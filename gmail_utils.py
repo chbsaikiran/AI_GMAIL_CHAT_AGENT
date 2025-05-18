@@ -17,14 +17,35 @@ def authenticate_gmail():
             token.write(creds.to_json())
     return build("gmail", "v1", credentials=creds)
 
-def fetch_emails_from_query(query: str, max_results=20):
+def fetch_emails_from_query(query: str, max_results=50):
     service = authenticate_gmail()
-    results = service.users().messages().list(userId="me", q=query, maxResults=max_results).execute()
-    messages = results.get("messages", [])
-    snippets = []
-
-    for msg in messages:
-        msg_data = service.users().messages().get(userId="me", id=msg["id"]).execute()
-        snippet = msg_data.get("snippet", "")
-        snippets.append(snippet)
-    return snippets
+    
+    try:
+        # First try with the original query
+        results = service.users().messages().list(userId="me", q=query, maxResults=max_results).execute()
+        messages = results.get("messages", [])
+        
+        # If no results and query contains date range, try with adjusted date range
+        if not messages and "after:" in query and "before:" in query:
+            # Modify query to ensure we include the entire day
+            query = query.replace("after:", "after:").replace("before:", "before:")
+        
+        # Try again with potentially modified query
+        results = service.users().messages().list(userId="me", q=query, maxResults=max_results).execute()
+        messages = results.get("messages", [])
+        
+        snippets = []
+        for msg in messages:
+            msg_data = service.users().messages().get(userId="me", id=msg["id"]).execute()
+            headers = {header['name']: header['value'] for header in msg_data.get('payload', {}).get('headers', [])}
+            date = headers.get('Date', '')
+            subject = headers.get('Subject', '')
+            snippet = msg_data.get("snippet", "")
+            # Include date and subject in the snippet for better context
+            full_snippet = f"Date: {date}\nSubject: {subject}\nContent: {snippet}"
+            snippets.append(full_snippet)
+        
+        return snippets
+    except Exception as e:
+        print(f"Error fetching emails: {str(e)}")
+        return []
