@@ -31,15 +31,13 @@ uvicorn main:app --reload
 ## Example Usage
 
 ```bash
-curl -X POST "http://localhost:8000/chat_with_gmail" \
--H "Content-Type: application/json" \
--d "{\"query\": \"How much did I spend on Amazon this month?\"}"
+curl -X POST "http://localhost:8000/chat_with_gmail" -H "Content-Type: application/json" -d "{\"query\": \"How much did I spend on Zomato in year 2025??\"}"
 ```
 
 ## Example Output
 ```json
 {
-  "answer": "You spent approximately ₹2,850 on Amazon in May 2025 across 3 orders."
+  "answer": "Total Zomato expenses in 2025: INR xxxx"
 }
 ```
 
