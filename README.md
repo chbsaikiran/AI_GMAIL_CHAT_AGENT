@@ -65,9 +65,13 @@ http://localhost:8000
 
 1. The chat interface will open with a welcome message
 2. Type your query in natural language, for example:
-   - "How much did I spend on Zomato in 2025?"
-   - "Show me all emails from John about the project"
-   - "What are my recent Amazon purchases?"
+   - How much did I spend on Zomato in year 2025??
+   - What did I order most on Zomato in year 2025??
+   - How much did I spent on Swiggy in year 2025??
+   - How much did I spent in Taara Kitchen in May 2025??
+   - where did I travel using Redbus in year 2025??
+   - How much did I spent in Taara Kitchen in May 2025??
+   - How much did I spent on SHAIK JABEER in year 2025??
 3. Press Enter or click the send button to submit your query
 4. The assistant will process your request and display the results in a chat bubble
 
