@@ -1,43 +1,109 @@
-# Gmail Chat Agent
+# Gmail Chat Assistant
 
-A FastAPI-based application that allows you to query your Gmail inbox using natural language.
+A modern web application that allows you to interact with your Gmail inbox using natural language. Built with FastAPI and featuring a beautiful chat interface, this application helps you query and analyze your emails through simple conversations.
+
+## Features
+
+- 🤖 Natural language processing for email queries
+- 💬 Modern, responsive chat interface
+- 🔍 Smart email search and analysis
+- ⚡ Real-time responses
+- 📱 Mobile-friendly design
+- ⌨️ Support for multi-line messages
+- ⏳ Typing indicators for better UX
+
+## Prerequisites
+
+- Python 3.8 or higher
+- Google Cloud Project with Gmail API enabled
+- Google API credentials (OAuth 2.0)
 
 ## Setup
 
-1. Create and activate virtual environment:
+1. Clone the repository:
 ```bash
-python -m venv venv
-venv\Scripts\activate  # On Windows
-source venv/bin/activate  # On Unix/MacOS
+git clone <repository-url>
+cd gmail-chat-assistant
 ```
 
-2. Install dependencies:
+2. Create and activate virtual environment:
+```bash
+# On Windows
+python -m venv venv
+venv\Scripts\activate
+
+# On Unix/MacOS
+python -m venv venv
+source venv/bin/activate
+```
+
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Set up environment variables:
-- Create a `.env` file in the root directory
-- Add your Google API key:
+4. Set up environment variables:
+   - Create a `.env` file in the root directory
+   - Add your Google API credentials:
 ```
 GOOGLE_API_KEY=your_api_key_here
 ```
 
-4. Run the application:
+## Running the Application
+
+1. Start the FastAPI server:
 ```bash
 uvicorn main:app --reload
 ```
 
-## Example Usage
-
-```bash
-curl -X POST "http://localhost:8000/chat_with_gmail" -H "Content-Type: application/json" -d "{\"query\": \"How much did I spend on Zomato in year 2025??\"}"
+2. Open your web browser and navigate to:
+```
+http://localhost:8000
 ```
 
-## Example Output
-```json
-{
-  "answer": "Total Zomato expenses in 2025: INR xxxx"
-}
+## Usage
+
+1. The chat interface will open with a welcome message
+2. Type your query in natural language, for example:
+   - "How much did I spend on Zomato in 2025?"
+   - "Show me all emails from John about the project"
+   - "What are my recent Amazon purchases?"
+3. Press Enter or click the send button to submit your query
+4. The assistant will process your request and display the results in a chat bubble
+
+## Project Structure
+
+```
+gmail-chat-assistant/
+├── main.py              # FastAPI application and routes
+├── gmail_utils.py       # Gmail API integration
+├── gemini_agent.py      # Natural language processing
+├── requirements.txt     # Project dependencies
+├── static/             # Static files
+│   ├── style.css      # CSS styles
+│   └── script.js      # Frontend JavaScript
+└── templates/          # HTML templates
+    └── index.html     # Main chat interface
 ```
 
+## Technologies Used
+
+- Backend:
+  - FastAPI
+  - Google Gmail API
+  - Google Gemini AI
+  - Python-dotenv
+
+- Frontend:
+  - HTML5
+  - CSS3
+  - JavaScript (Vanilla)
+  - Inter font family
+
+## Contributing
+
+Feel free to submit issues and enhancement requests!
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
