@@ -70,7 +70,6 @@ http://localhost:8000
    - How much did I spent on Swiggy in year 2025??
    - How much did I spent in Taara Kitchen in May 2025??
    - where did I travel using Redbus in year 2025??
-   - How much did I spent in Taara Kitchen in May 2025??
    - How much did I spent on SHAIK JABEER in year 2025??
 3. Press Enter or click the send button to submit your query
 4. The assistant will process your request and display the results in a chat bubble
