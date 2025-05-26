@@ -20,6 +20,26 @@ A modern web application that allows you to interact with your Gmail inbox using
 
 ## Setup
 
+### 1. Enable Gmail API
+
+1. Visit [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project (or select existing)
+3. Enable Gmail API:
+   - Go to APIs & Services > Library
+   - Search for "Gmail API"
+   - Click "Enable"
+4. Configure OAuth consent screen:
+   - Go to OAuth consent screen
+   - Choose "External" user type (recommended for development)
+   - Fill in the required information
+5. Create OAuth credentials:
+   - Go to Credentials > Create Credentials > OAuth client ID
+   - Choose "Desktop App" as application type
+   - Download the credentials.json file
+   - Place it in your project root directory
+
+### 2. Project Setup
+
 1. Clone the repository:
 ```bash
 git clone <repository-url>
@@ -48,6 +68,14 @@ pip install -r requirements.txt
 ```
 GOOGLE_API_KEY=your_api_key_here
 ```
+
+### 3. First Run Configuration
+
+1. On first run, the application will:
+   - Open your default browser
+   - Ask for Gmail login
+   - Request necessary permissions
+   - Generate a token.json file for future use
 
 ## Running the Application
 
