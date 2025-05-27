@@ -38,12 +38,20 @@ def summarize_emails_with_query(user_query: str, snippets: list[str]) -> str:
     model = genai.GenerativeModel("gemini-2.0-flash")
     combined_emails = "\n\n".join(snippets[:50])  # Increased to match max_results
     final_prompt = f"""
-You are an assistant who summarizes Gmail content and answers user queries.
-When analyzing expenses or orders:
-1. Include ALL transactions from the entire date range
-2. Pay special attention to dates at the start of the month
-3. List each transaction with its date
-4. Calculate the total amount accurately
+You are an assistant who analyzes Gmail content and answers user queries accurately.
+Your task is to:
+1. Understand the specific question being asked
+2. Analyze the email snippets to find relevant information
+3. Provide a clear, concise answer that directly addresses the user's query
+4. When analyzing expenses or orders:
+   - Include ALL transactions from the entire date range
+   - Pay special attention to dates at the start of the month
+   - List each transaction with its date
+   - Calculate the total amount accurately
+5. If the query is about travel or other topics:
+   - Focus on the specific information requested
+   - Provide relevant details from the emails
+   - Maintain chronological order when relevant
 
 EMAIL SNIPPETS:
 {combined_emails}
@@ -51,10 +59,12 @@ EMAIL SNIPPETS:
 USER QUESTION:
 {user_query}
 
-TASK: Answer the question based on ALL emails in the snippets. For expenses/orders:
-1. List each transaction with its date
-2. Show the total amount
-3. Mention if you find orders from early May 2025 (1st-3rd)
+TASK: 
+1. Answer the question based on the email snippets, focusing specifically on what was asked.
+2. When analyzing expenses or orders: Answer the question based on ALL emails in the snippets. For expenses/orders:
+  - List each transaction with its date
+  - Show the total amount
+  - Include all orders in the date range
 """
     response = model.generate_content(final_prompt)
     return response.text
